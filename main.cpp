@@ -19,6 +19,7 @@ struct Tarefa {
 std::vector<Tarefa> tarefas; // Vetor que armazena todas as tarefas
 int proximoId = 1; // Variável que armazena o próximo ID disponível para uma nova tarefa
 
+// Função para validar a data no formato dd/mm/aa e verificar se não é anterior à data atual
 bool validarData(const std::string& data) {
     if (data.size() != 8 || data[2] != '/' || data[5] != '/') return false;
     // Verifica se os caracteres são números
@@ -52,6 +53,7 @@ bool validarData(const std::string& data) {
     return true;
 }
 
+// Função para validar que o título não seja vazio e não seja somente numérico
 bool validarTitulo(const std::string& titulo) {
     return !titulo.empty() && std::any_of(titulo.begin(), titulo.end(), [](char c) { return !isdigit(c); });
 }
@@ -329,8 +331,8 @@ void mostrarMenu() {
 }
 
 int main() {
-    // carregarTarefasDoArquivo(); // carrega o arquivo na inicialização
+    carregarTarefasDoArquivo(); // Carrega as tarefas do arquivo ao iniciar
     mostrarMenu(); // Exibe o menu para o usuário
-    // salvarTarefasEmArquivo(); // Salva as tarefas em arquivo ao sair
+    salvarTarefasEmArquivo(); // Salva as tarefas em arquivo ao sair
     return 0; // Encerra o programa
 }
